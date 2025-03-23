@@ -39,19 +39,44 @@ CREATE TABLE customers (
 
 
 -- Insert the following data into the customers table
-INSERT INTO customers (name, email) VALUES
-('Alice Johnson', 'alice.johnson@example.com'),
-('Bob Smith', 'bob.smith@example.com'),
-('Charlie Brown', 'charlie.brown@example.com'),
-('David Wilson', 'david.wilson@example.com'),
-('Emma Davis', 'emma.davis@example.com'),
-('Frank Miller', 'frank.miller@example.com'),
-('Grace Taylor', 'grace.taylor@example.com'),
-('Henry Lee', 'henry.lee@example.com'),
-('Isabella Harris', 'isabella.harris@example.com'),
-('Jack White', 'jack.white@example.com');
+INSERT INTO customers (name, email, join_date) VALUES
+('Alice Johnson', 'alice.johnson@example.com', '2021-01-01'),
+('Bob Smith', 'bob.smith@example.com', '2022-02-02'),
+('Charlie Brown', 'charlie.brown@example.com', '2023-10-03'),
+('Emma Davis', 'emma.davis@example.com', '2024-01-02'),
+('Frank Miller', 'frank.miller@example.com', '2025-01-03'),
+('Henry Lee', 'henry.lee@example.com', '2022-07-07'),
+('Isabella Harris', 'isabella.harris@example.com', '2023-08-08'),
+('Grace Taylor', 'grace.taylor@example.com', CURRENT_DATE),
+('Jack White', 'jack.white@example.com', CURRENT_DATE),
+('Lucy Clark', 'lucy.clark@example.com', '2021-01-01');
 
 
-
--- show all the customers
+-- show all the customers 
 SELECT * FROM customers;
+
+
+
+-- TODO: 3. Create a table called orders
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,  
+    customer_id INT NOT NULL, 
+    book_id INT NOT NULL,
+    quantity INT CHECK (quantity > 0) NOT NULL, 
+    order_date DATE DEFAULT CURRENT_DATE
+);
+
+
+-- Insert the following data into the orders table
+INSERT INTO orders (customer_id, book_id, quantity, order_date) VALUES
+(1, 1, 2, '2023-01-01'),
+(2, 2, 1, '2024-07-02'),
+(3, 10, 5, '2025-03-03'),
+(4, 4, 2, CURRENT_DATE),
+(5, 5, 2, '2020-09-12'),
+(6, 6, 4, CURRENT_DATE)
+
+
+-- show all the orders
+SELECT * FROM orders;
+
